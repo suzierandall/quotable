@@ -4,8 +4,10 @@ include_once('lib/dictionary.php');
 class Quote {
 	const TITLE_KEY = 'noun';
 	private $m_title = 'fish';
+	private $m_patterns = [];
 
 	function __construct() {
+		$this->populate_patterns();
 	}
 
 	public function get_title() {
@@ -34,6 +36,13 @@ class Quote {
 		$max = count($options) - 1;
 		$index = rand(0, $max);
 		return $options[$index];
+	}
+
+	private function populate_patterns() {
+		$methods = get_class_methods($this);
+		$m_patterns = array_filter($methods, function($name) {
+			return strpos($name, 'get_quote_pattern_') === 0;
+		});
 	}
 
 	private function get_long_quote(): array {
