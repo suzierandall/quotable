@@ -2,24 +2,26 @@
 include_once('lib/dictionary.php');
 
 class Quoter {
+	const TITLE_KEY = 'noun';
 	private $m_dictionary;
+	private $m_title = 'fish';
 
 	function __construct() {
-		//$this->dictionary = get_dictionary();
+		$this->m_dictionary = $this->get_dictionary();
 	}
 
-	public function get_name() {
-		return 'fish';
+	public function get_title() {
+		return sprintf('The %s', $this->m_title);
 	}
 
 	public function get_quote(): ?string {	
 		$rv = null;
-		//$entries = $this->dictionary;
 		$entries = $this->get_long_quote();
 		$story = [];
 		foreach ($entries as $entry) {
 			$story[] = static::select_entry($entry);
 		}	
+		$this->set_long_quote_title($story);
 		$rv = implode(' ', $story);
 
 		return $rv;
@@ -36,9 +38,13 @@ class Quoter {
 		return $this->get_dictionary_pattern($pattern);
 	}
 
+	private function set_long_quote_title(array $quote): void {
+		$this->m_title = $quote[8];
+	}
+
 	private function get_dictionary_pattern(array $pattern): array {
 		$rv = null;
-		$dictionary = $this->get_dictionary();
+		$dictionary = $this->m_dictionary;
 		foreach($pattern as $key) {
 			$words = $dictionary[$key] ?? null;
 			if (!is_null($words)) {
