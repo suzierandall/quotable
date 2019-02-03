@@ -22,8 +22,7 @@ class Quoter {
 			$story[] = static::select_entry($entry);
 		}	
 		$this->set_long_quote_title($story);
-		$rv = implode(' ', $story);
-
+		$rv = ucfirst(implode(' ', $story));
 		return $rv;
 	}
 
