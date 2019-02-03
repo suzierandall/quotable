@@ -15,8 +15,41 @@ function get_adjectives(): array {
 		'silly', 'changeable'];
 }
 
-function get_conjunctions(): array {
-	return ['as', 'whilst', 'before', 'after', 'when'];
+function get_coordinate_conjunctions(): array {
+	return ['and', 'but', 'yet'];
+}
+
+function get_subordinate_conjunctions(): array {
+	return [
+		'while',
+		'as soon as',
+		'although',
+		'before',
+		'even if',
+		'because',
+		'no matter how',
+		'whether',
+		'wherever',
+		'when',
+		'until',
+		'after',
+		'as if',
+		'how',
+		'if',
+		'provided',
+		'in that',
+		'once',
+		'supposing',
+		'while',
+		'unless',
+		'in case',
+		'as far as',
+		'now that',
+		'as',
+		'so that',
+		'though',
+		'since'
+	];
 }
 
 function get_verbs(): array {

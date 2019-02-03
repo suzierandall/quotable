@@ -33,7 +33,7 @@ class Quoter {
 	}
 
 	private function get_long_quote(): array {
-		$pattern = ['sub', 'fix', 'adj', 'conj', 'sub', 'verb', 'poss', 'adj', 'noun'];
+		$pattern = ['sub', 'fix', 'adj', 'subord', 'sub', 'verb', 'poss', 'adj', 'noun'];
 		return $this->get_dictionary_pattern($pattern);
 	}
 
@@ -60,8 +60,9 @@ class Quoter {
 			'noun' => get_nouns(),
 			'adj' => get_adjectives(), 
 			'verb' => get_verbs(), 
-			'conj' => get_conjunctions(), 
-			'fix' => get_fixer() 
+			'fix' => get_fixer(),
+			'coord' => get_coordinate_conjunctions(),
+			'subord' => get_subordinate_conjunctions(),
 		];
 	}	
 }
