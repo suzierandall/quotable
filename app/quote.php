@@ -8,7 +8,7 @@
 include_once('lib/dictionary.php');
 
 class Quote {
-	const TITLE_KEY = 'noun';
+	const TITLE_KEY = 'verb';
 	private $m_title = 'fish';
 	private $m_patterns = [];
 
@@ -42,7 +42,7 @@ class Quote {
 					$story[] = $option;
 				}
 			}
-			$this->set_long_quote_title($story);
+			$this->set_quote_title($story);
 			$rv = ucfirst(str_replace(' ,', ',', implode(' ', $story)));
 		}
 		return $rv;
@@ -123,8 +123,11 @@ class Quote {
 	 * @param array quote - the quote, itemised by chapter
 	 * @return void
 	 */
-	private function set_long_quote_title(array $quote): void {
+	private function set_quote_title(array $quote): void {
 		// @todo FIXME: key word positions should be set per pattern
+		// what pattern is this?
+		// find last position of TITLE_KEY
+		// retrieve value
 		$this->m_title = $quote[8];
 	}
 
