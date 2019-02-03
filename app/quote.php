@@ -118,13 +118,27 @@ class Quote {
 	 * @return void
 	 */
 	private function set_quote_title(array $quote): void {
-		$keys = array_keys($this->m_use_pattern, self::TITLE_KEY);
+		$filter_by_key = self::TITLE_KEY;
+		$keys = array_keys($this->m_use_pattern, $filter_by_key);
 		$key = array_pop($keys);
-		$title = $quote[$key] ?? null;
-		if (!empty($title)) {
-			$title = preg_replace('/^(\w+)ed[\s\w]*/', '$1ing', $title);
-			$this->m_title = $title;
+		$val = $quote[$key] ?? null;
+		if (!empty($val)) {
+			if ('verb' == self::TITLE_KEY) {
+				$val = static::get_present_from_past($val);
+			}
+			$this->m_title = $val;
 		}
+	}
+
+	/**
+	 * Replace past tense verb with present participle
+	 * @param string val - the verb to transform
+	 * @return string - the transformed verb
+	 */
+	private static function get_present_from_past(string $val): ?string {
+		$past_tense = '/^(\w+)ed[\s\w]*/';
+		$present_participle = '$1ing';
+		return preg_replace($past_tense, $present_participle, $val);
 	}
 
 	/**
