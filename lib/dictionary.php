@@ -9,9 +9,9 @@ function get_fixer(): array {
 }
 
 function get_adjectives(): array {
-	return ['giant', 'miniscule', 'bright', 'dull', 'hopeful', 
-		'hungry', 'pretty', 'quiet', 'noisy', 'peaceful', 'boring', 
-		'insane', 'wacky', 'frightened', 'sweet', 'perfect', 'amused', 
+	return ['giant', 'miniscule', 'bright', 'dull', 'hopeful',
+		'hungry', 'pretty', 'quiet', 'noisy', 'peaceful', 'boring',
+		'insane', 'wacky', 'frightened', 'sweet', 'perfect', 'amused',
 		'silly', 'changeable'];
 }
 
@@ -53,9 +53,9 @@ function get_subordinate_conjunctions(): array {
 }
 
 function get_verbs(): array {
-	return ['opened', 'closed', 'borrowed', 'returned to', 'hoped for', 
-		'needed', 'placed', 'added', 'removed', 'watched', 'ignored', 
-		'laid down', 'picked up', 'wondered about', 'created', 'released', 
+	return ['opened', 'closed', 'borrowed', 'returned to', 'hoped for',
+		'needed', 'placed', 'added', 'removed', 'watched', 'ignored',
+		'laid down', 'picked up', 'wondered about', 'created', 'released',
 		'found', 'considered', 'pondered'];
 }
 
@@ -64,8 +64,8 @@ function get_possessive_pronouns(): array {
 }
 
 function get_nouns(): array {
-	return ['chair', 'house', 'car', 'horse', 'donkey', 'swimming pool', 
-		'tree', 'cliff', 'piano', 'guitar', 'fish', 'ocean', 'bowl', 'plate', 
+	return ['chair', 'house', 'car', 'horse', 'donkey', 'swimming pool',
+		'tree', 'cliff', 'piano', 'guitar', 'fish', 'ocean', 'bowl', 'plate',
 		'wand', 'hat', 'door', 'cinema', 'banana', 'treacle', 'pond'];
 }
 

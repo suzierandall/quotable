@@ -14,7 +14,7 @@ class Quote {
 		return sprintf('The %s', $this->m_title);
 	}
 
-	public function get_quote(): ?string {	
+	public function get_quote(): ?string {
 		$rv = null;
 		$entries = $this->get_long_quote();
 		$story = [];
@@ -68,14 +68,14 @@ class Quote {
 
 	private function get_dictionary(): array {
 		return [
-			'sub' => get_subject_pronouns(), 
-			'poss' => get_possessive_pronouns(), 
+			'sub' => get_subject_pronouns(),
+			'poss' => get_possessive_pronouns(),
 			'noun' => get_nouns(),
-			'adj' => get_adjectives(), 
-			'verb' => get_verbs(), 
+			'adj' => get_adjectives(),
+			'verb' => get_verbs(),
 			'fix' => get_fixer(),
 			'coord' => get_coordinate_conjunctions(),
 			'subord' => get_subordinate_conjunctions(),
 		];
-	}	
+	}
 }
