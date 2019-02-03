@@ -26,7 +26,7 @@ class Quote {
 				}
 			}
 			$this->set_long_quote_title($story);
-			$rv = ucfirst(implode(' ', $story));
+			$rv = ucfirst(str_replace(' ,', ',', implode(' ', $story)));
 		}
 		return $rv;
 	}
@@ -58,7 +58,17 @@ class Quote {
 	}
 
 	private function get_quote_pattern_long(): array {
-		$pattern = ['sub', 'fix', 'adj', 'subord', 'sub', 'verb', 'poss', 'adj', 'noun'];
+		$pattern = ['sub', 'fix', 'adj', 'comma', 'subord', 'sub', 'verb', 'poss', 'adj', 'noun'];
+		return $this->get_dictionary_pattern($pattern);
+	}
+
+	private function get_quote_pattern_longish(): array {
+		$pattern = ['sub', 'fix', 'adj', 'coord', 'adj', 'comma', 'coord', 'sub', 'verb', 'poss', 'adj', 'noun'];
+		return $this->get_dictionary_pattern($pattern);
+	}
+
+	private function get_quote_pattern_longer(): array {
+		$pattern = ['sub', 'fix', 'adj', 'coord', 'adj', 'comma', 'subord', 'sub', 'verb', 'poss', 'adj', 'noun'];
 		return $this->get_dictionary_pattern($pattern);
 	}
 
@@ -88,6 +98,7 @@ class Quote {
 			'fix' => get_fixer(),
 			'coord' => get_coordinate_conjunctions(),
 			'subord' => get_subordinate_conjunctions(),
+			'comma' => [',']
 		];
 	}
 }
