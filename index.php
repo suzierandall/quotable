@@ -1,5 +1,6 @@
 <?php
 	include_once('app/quote.php');
+	$quoter = new Quoter;
 ?>
 
 <!DOCTYPE HTML>
@@ -9,8 +10,8 @@
 </head>
 <body>
 <div>
-	<h2>Hello <?=Quote::get_name()?></h2>
-	<p><?=Quote::get_quote()?></p>
+	<h2>Hello <?=$quoter->get_name()?></h2>
+	<p><?=$quoter->get_quote()?></p>
 </div>
 </body>
 </html>
