@@ -3,11 +3,9 @@ include_once('lib/dictionary.php');
 
 class Quote {
 	const TITLE_KEY = 'noun';
-	private $m_dictionary;
 	private $m_title = 'fish';
 
 	function __construct() {
-		$this->m_dictionary = $this->get_dictionary();
 	}
 
 	public function get_title() {
@@ -43,7 +41,7 @@ class Quote {
 
 	private function get_dictionary_pattern(array $pattern): array {
 		$rv = null;
-		$dictionary = $this->m_dictionary;
+		$dictionary = $this->get_dictionary();
 		foreach($pattern as $key) {
 			$words = $dictionary[$key] ?? null;
 			if (!is_null($words)) {
