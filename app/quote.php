@@ -11,6 +11,7 @@ class Quote {
 	const TITLE_KEY = 'verb';
 	private $m_title = 'fish';
 	private $m_patterns = [];
+	private $m_use_pattern;
 
 	/**
 	 * Initialise the m_patterns list
@@ -81,17 +82,18 @@ class Quote {
 	}
 
 	/**
-	 * Get the dictionary chapters for a randomly selected pattern
+	 * Get the dictionary chapters for a randomly chosen pattern
+	 * Stores the chosen pattern for use elsewhere
 	 * @return array - the dictionary chapters or null on failure
 	 */
 	private function get_dictionary(): ?array {
-		$rv = null;
 		$pattern_callable = $this->choose($this->m_patterns);
+		$this->m_use_pattern = null;
 		if (is_callable([$this, $pattern_callable])) {
 			$pattern = $this->$pattern_callable();
-			$rv = $this->get_dictionary_by_pattern($pattern);
+			$this->m_use_pattern = $pattern;
 		}
-		return $rv;
+		return $this->get_dictionary_by_pattern();
 	}
 
 	/**
@@ -149,15 +151,19 @@ class Quote {
 
 	/**
 	 * Get the required dictionary chapters for the requested quote pattern
-	 * @param array pattern - an array of required chapter keys
-	 * @return array - the dictionary chapters in the order specified by the pattern
+	 * @return array - the dictionary chapters or null on failure
 	 */
-	private function get_dictionary_by_pattern(array $pattern): array {
-		$vals = [];
-		foreach($pattern as $key) {
-			$vals[] = $this->get_dictionary_chapter($key);
+	private function get_dictionary_by_pattern(): ?array {
+		$rv = null;
+		// pattern of required chapter keys
+		if (!empty($this->m_use_pattern)) {
+			$vals = [];
+			foreach($this->m_use_pattern as $key) {
+				$vals[] = $this->get_dictionary_chapter($key);
+			}
+			$rv = static::purge($vals);
 		}
-		return static::purge($vals);
+		return $rv;
 	}
 
 	/**
