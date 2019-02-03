@@ -1,7 +1,7 @@
 <?php
 
 function get_subject_pronouns(): array {
-	return ['she', 'he', 'I', 'you'];
+	return ['she', 'he', 'I', 'you', 'it'];
 }
 
 function get_fixer(): array {
@@ -21,7 +21,7 @@ function get_coordinate_conjunctions(): array {
 
 function get_subordinate_conjunctions(): array {
 	return [
-		'while',
+		'whilst',
 		'as soon as',
 		'although',
 		'before',
@@ -34,7 +34,6 @@ function get_subordinate_conjunctions(): array {
 		'until',
 		'after',
 		'as if',
-		'provided that',
 		'once',
 		'while',
 		'unless',
@@ -54,7 +53,7 @@ function get_verbs(): array {
 }
 
 function get_possessive_pronouns(): array {
-	return ['the', 'their', 'our', 'his', 'her', 'a', 'my', 'your'];
+	return ['the', 'their', 'our', 'his', 'her', 'a', 'my', 'your', 'this', 'that'];
 }
 
 function get_nouns(): array {
