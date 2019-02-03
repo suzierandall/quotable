@@ -42,10 +42,11 @@ class Quote {
 
 	private function populate_patterns() {
 		$methods = get_class_methods($this);
-		$pattern_methods = array_filter($methods, function($name) {
-			return strpos($name, 'get_quote_pattern_') === 0;
-		});
-		$this->m_patterns = array_values($pattern_methods);
+		$this->m_patterns = static::purge($methods, 'static::is_patternable');
+	}
+
+	private static function is_patternable($name) {
+		return strpos($name, 'get_quote_pattern_') === 0;
 	}
 
 	private function get_dictionary() {
@@ -74,8 +75,11 @@ class Quote {
 		$this->m_title = $quote[8];
 	}
 
-	private static function purge(array $val) {
-		return array_values(array_filter($val));
+	private static function purge(array $vals, string $callback = null) {
+		$vals = !empty($callback)
+			? array_filter($vals, $callback)
+			: array_filter($vals);
+		return array_values($vals);
 	}
 
 	private function get_dictionary_by_pattern(array $pattern): array {
