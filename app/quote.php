@@ -16,11 +16,11 @@ class Quote {
 
 	public function get_quote(): ?string {
 		$rv = null;
-		$entries = $this->get_pattern();
+		$entries = $this->get_dictionary();
 		if (!empty($entries)) {
 			$story = [];
 			foreach ($entries as $entry) {
-				$option = static::select_one($entry);
+				$option = static::choose($entry);
 				if (!empty($option)) {
 					$story[] = $option;
 				}
@@ -31,7 +31,7 @@ class Quote {
 		return $rv;
 	}
 
-	private static function select_one(array $options) {
+	private static function choose(array $options) {
 		if (empty($options)) {
 			return null;
 		}
@@ -48,12 +48,12 @@ class Quote {
 		$this->m_patterns = array_values($pattern_methods);
 	}
 
-	private function get_pattern() {
+	private function get_dictionary() {
 		$rv = null;
-		$pattern_callable = $this->select_one($this->m_patterns);
+		$pattern_callable = $this->choose($this->m_patterns);
 		if (is_callable([$this, $pattern_callable])) {
 			$pattern = $this->$pattern_callable();
-			$rv = $this->get_dictionary_pattern($pattern);
+			$rv = $this->get_dictionary_by_pattern($pattern);
 		}
 		return $rv;
 	}
@@ -74,19 +74,19 @@ class Quote {
 		$this->m_title = $quote[8];
 	}
 
-	private function get_dictionary_pattern(array $pattern): array {
+	private function get_dictionary_by_pattern(array $pattern): array {
 		$rv = null;
-		$dictionary = $this->get_dictionary();
+		$dictionary = $this->get_base_dictionary();
 		foreach($pattern as $key) {
-			$words = $dictionary[$key] ?? null;
-			if (!is_null($words)) {
-				$rv[] = $words;
+			$components = $dictionary[$key] ?? null;
+			if (!is_null($components)) {
+				$rv[] = $components;
 			}
 		}
 		return $rv;
 	}
 
-	private function get_dictionary(): array {
+	private function get_base_dictionary(): array {
 		return [
 			'sub' => get_subject_pronouns(),
 			'poss' => get_possessive_pronouns(),
