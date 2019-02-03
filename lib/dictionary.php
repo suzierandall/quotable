@@ -36,16 +36,3 @@ function get_nouns(): array {
 		'wand', 'hat', 'door', 'cinema', 'banana', 'treacle', 'pond'];
 }
 
-function get_dictionary(): array {
-	return [
-		get_subject_pronouns(), 
-		get_fixer(), 
-		get_adjectives(), 
-		get_conjunctions(), 
-		get_subject_pronouns(), 
-		get_verbs(), 
-		get_possessive_pronouns(), 
-		get_adjectives(), 
-		get_nouns()
-	];
-}
