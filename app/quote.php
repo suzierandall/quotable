@@ -16,16 +16,18 @@ class Quote {
 
 	public function get_quote(): ?string {
 		$rv = null;
-		$entries = $this->get_long_quote();
-		$story = [];
-		foreach ($entries as $entry) {
-			$option = static::select_one($entry);
-			if (!empty($option)) {
-				$story[] = $option;
+		$entries = $this->get_pattern();
+		if (!empty($entries)) {
+			$story = [];
+			foreach ($entries as $entry) {
+				$option = static::select_one($entry);
+				if (!empty($option)) {
+					$story[] = $option;
+				}
 			}
-		}	
-		$this->set_long_quote_title($story);
-		$rv = ucfirst(implode(' ', $story));
+			$this->set_long_quote_title($story);
+			$rv = ucfirst(implode(' ', $story));
+		}
 		return $rv;
 	}
 
@@ -40,12 +42,22 @@ class Quote {
 
 	private function populate_patterns() {
 		$methods = get_class_methods($this);
-		$m_patterns = array_filter($methods, function($name) {
+		$pattern_methods = array_filter($methods, function($name) {
 			return strpos($name, 'get_quote_pattern_') === 0;
 		});
+		$this->m_patterns = array_values($pattern_methods);
 	}
 
-	private function get_long_quote(): array {
+	private function get_pattern() {
+		$rv = null;
+		$pattern_callable = $this->select_one($this->m_patterns);
+		if (is_callable([$this, $pattern_callable])) {
+			$rv = $this->$pattern_callable();
+		}
+		return $rv;
+	}
+
+	private function get_quote_pattern_long(): array {
 		$pattern = ['sub', 'fix', 'adj', 'subord', 'sub', 'verb', 'poss', 'adj', 'noun'];
 		return $this->get_dictionary_pattern($pattern);
 	}
