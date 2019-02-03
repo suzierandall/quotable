@@ -17,17 +17,23 @@ class Quote {
 		$entries = $this->get_long_quote();
 		$story = [];
 		foreach ($entries as $entry) {
-			$story[] = static::select_entry($entry);
+			$option = static::select_one($entry);
+			if (!empty($option)) {
+				$story[] = $option;
+			}
 		}	
 		$this->set_long_quote_title($story);
 		$rv = ucfirst(implode(' ', $story));
 		return $rv;
 	}
 
-	private static function select_entry(array $entries): ?string {
-		$max = count($entries) - 1;
+	private static function select_one(array $options) {
+		if (empty($options)) {
+			return null;
+		}
+		$max = count($options) - 1;
 		$index = rand(0, $max);
-		return $entries[$index];
+		return $options[$index];
 	}
 
 	private function get_long_quote(): array {
