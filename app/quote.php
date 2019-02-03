@@ -82,7 +82,7 @@ class Quote {
 
 	/**
 	 * Get the dictionary chapters for a randomly selected pattern
-	 * @return array - the dictionary chapters
+	 * @return array - the dictionary chapters or null on failure
 	 */
 	private function get_dictionary(): ?array {
 		$rv = null;
@@ -132,9 +132,12 @@ class Quote {
 	 * Filters and re-indexes indexed arrays
 	 * @param array vals - array to be purged
 	 * @param string callback - optional callback to pass to array_filter
-	 * @return string - the purged and reindexed array
+	 * @return array - the purged and reindexed array
 	 */
-	private static function purge(array $vals, string $callback = null) {
+	private static function purge(
+		array $vals,
+		string $callback = null
+	): array {
 		$vals = !empty($callback)
 			? array_filter($vals, $callback)
 			: array_filter($vals);
