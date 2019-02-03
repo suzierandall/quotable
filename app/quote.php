@@ -126,11 +126,13 @@ class Quote {
 	 * @return void
 	 */
 	private function set_quote_title(array $quote): void {
-		// @todo FIXME: key word positions should be set per pattern
-		// what pattern is this?
-		// find last position of TITLE_KEY
-		// retrieve value
-		$this->m_title = $quote[8];
+		$keys = array_keys($this->m_use_pattern, self::TITLE_KEY);
+		$key = array_pop($keys);
+		$title = $quote[$key] ?? null;
+		if (!empty($title)) {
+			$title = preg_replace('/^(\w+)ed[\s\w]*/', '$1ing', $title);
+			$this->m_title = $title;
+		}
 	}
 
 	/**
