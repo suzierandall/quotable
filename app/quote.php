@@ -52,24 +52,22 @@ class Quote {
 		$rv = null;
 		$pattern_callable = $this->select_one($this->m_patterns);
 		if (is_callable([$this, $pattern_callable])) {
-			$rv = $this->$pattern_callable();
+			$pattern = $this->$pattern_callable();
+			$rv = $this->get_dictionary_pattern($pattern);
 		}
 		return $rv;
 	}
 
 	private function get_quote_pattern_long(): array {
-		$pattern = ['sub', 'fix', 'adj', 'comma', 'subord', 'sub', 'verb', 'poss', 'adj', 'noun'];
-		return $this->get_dictionary_pattern($pattern);
+		return ['sub', 'fix', 'adj', 'comma', 'subord', 'sub', 'verb', 'poss', 'adj', 'noun'];
 	}
 
 	private function get_quote_pattern_longish(): array {
-		$pattern = ['sub', 'fix', 'adj', 'coord', 'adj', 'comma', 'coord', 'sub', 'verb', 'poss', 'adj', 'noun'];
-		return $this->get_dictionary_pattern($pattern);
+		return ['sub', 'fix', 'adj', 'coord', 'adj', 'comma', 'coord', 'sub', 'verb', 'poss', 'adj', 'noun'];
 	}
 
 	private function get_quote_pattern_longer(): array {
-		$pattern = ['sub', 'fix', 'adj', 'coord', 'adj', 'comma', 'subord', 'sub', 'verb', 'poss', 'adj', 'noun'];
-		return $this->get_dictionary_pattern($pattern);
+		return ['sub', 'fix', 'adj', 'coord', 'adj', 'comma', 'subord', 'sub', 'verb', 'poss', 'adj', 'noun'];
 	}
 
 	private function set_long_quote_title(array $quote): void {
