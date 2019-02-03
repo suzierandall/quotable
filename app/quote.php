@@ -74,16 +74,24 @@ class Quote {
 		$this->m_title = $quote[8];
 	}
 
+	private static function purge(array $val) {
+		return array_values(array_filter($val));
+	}
+
 	private function get_dictionary_by_pattern(array $pattern): array {
-		$rv = null;
-		$dictionary = $this->get_base_dictionary();
+		$vals = [];
 		foreach($pattern as $key) {
-			$components = $dictionary[$key] ?? null;
-			if (!is_null($components)) {
-				$rv[] = $components;
-			}
+			$vals[] = $this->get_dictionary_chapter($key);
 		}
-		return $rv;
+		return static::purge($vals);
+	}
+
+	private function get_dictionary_chapter(string $key) {
+		static $dictionary;
+		if (is_null($dictionary)) {
+			$dictionary = $this->get_base_dictionary();
+		}
+		return $dictionary[$key] ?? null;
 	}
 
 	private function get_base_dictionary(): array {
