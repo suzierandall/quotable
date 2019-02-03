@@ -8,9 +8,10 @@ $q = new Quoter;
 $q->get_quote();
 ```
 
-Quotable creates 'useful' quotes using the in-built dictionary.
+### Examples
 
-E.g.
+Quotable creates 'useful' quotes using the in-built dictionary, such as:
+
 > he looked dull whilst she pondered the noisy plate
 
 > he appeared frightened as she borrowed your hungry fish
