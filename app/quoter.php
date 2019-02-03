@@ -8,10 +8,8 @@ class Quoter {
 		//$this->dictionary = get_dictionary();
 	}
 
-	private static function select_entry(array $entries): ?string {
-		$max = count($entries) - 1;
-		$index = rand(0, $max);
-		return $entries[$index];
+	public function get_name() {
+		return 'fish';
 	}
 
 	public function get_quote(): ?string {	
@@ -27,8 +25,10 @@ class Quoter {
 		return $rv;
 	}
 
-	public function get_name() {
-		return 'fish';
+	private static function select_entry(array $entries): ?string {
+		$max = count($entries) - 1;
+		$index = rand(0, $max);
+		return $entries[$index];
 	}
 
 	private function get_long_quote(): array {
