@@ -97,18 +97,18 @@ class Quote {
 	}
 
 	/**
-	 * Get the dictionary chapter pattern for a long quote
+	 * Get the dictionary chapter pattern for a short quote
 	 * @return array - the array keys for the required chapters
 	 */
-	private function get_quote_pattern_long(): array {
+	private function get_quote_pattern_short(): array {
 		return ['sub', 'fix', 'adj', 'subord', 'sub', 'verb', 'poss', 'adj', 'noun'];
 	}
 
 	/**
-	 * Get the dictionary chapter pattern for a longer quote
+	 * Get the dictionary chapter pattern for a long quote
 	 * @return array - the array keys for the required chapters
 	 */
-	private function get_quote_pattern_longer(): array {
+	private function get_quote_pattern_long(): array {
 		return ['sub', 'fix', 'adj', 'coord', 'adj', 'subord', 'sub', 'verb', 'poss', 'adj', 'noun'];
 	}
 
