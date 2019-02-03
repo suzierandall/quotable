@@ -1,5 +1,5 @@
 <?php
-	include_once('app/quote.php');
+	include_once('app/quoter.php');
 	$quoter = new Quoter;
 ?>
 
