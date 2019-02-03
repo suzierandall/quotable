@@ -1,7 +1,7 @@
 <?php
 include_once('lib/dictionary.php');
 
-class Quoter {
+class Quote {
 	const TITLE_KEY = 'noun';
 	private $m_dictionary;
 	private $m_title = 'fish';

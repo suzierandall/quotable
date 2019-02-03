@@ -1,6 +1,6 @@
 <?php
-	include_once('app/quoter.php');
-	$quoter = new Quoter;
+	include_once('app/quote.php');
+	$quoter = new Quote;
 	$quote = $quoter->get_quote();
 	$title = $quoter->get_title();
 ?>
