@@ -3,7 +3,7 @@
 ### Add quote
 
 ```
-include_once('app/quoter.php');
+include_once('app/quote.php');
 $q = new Quoter;
 $q->get_quote();
 ```
@@ -14,4 +14,4 @@ Quotable creates 'useful' quotes using the in-built dictionary, such as:
 
 > He appeared frightened as she borrowed your hungry fish
 
-> You became sweet yet hungry, and she pondered the boring ocean
+> He felt peaceful but quiet because he released her changeable hat
