@@ -99,7 +99,7 @@ class Quote {
 	 * @return array - the array keys for the required chapters
 	 */
 	private function get_quote_pattern_long(): array {
-		return ['sub', 'fix', 'adj', 'comma', 'subord', 'sub', 'verb', 'poss', 'adj', 'noun'];
+		return ['sub', 'fix', 'adj', 'subord', 'sub', 'verb', 'poss', 'adj', 'noun'];
 	}
 
 	/**

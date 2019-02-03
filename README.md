@@ -12,6 +12,6 @@ $q->get_quote();
 
 Quotable creates 'useful' quotes using the in-built dictionary, such as:
 
-> he looked dull whilst she pondered the noisy plate
+> He appeared frightened as she borrowed your hungry fish
 
-> he appeared frightened as she borrowed your hungry fish
+> You became sweet yet hungry, and she pondered the boring ocean
