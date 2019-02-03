@@ -12,6 +12,9 @@ class Quote {
 	private $m_title = 'fish';
 	private $m_patterns = [];
 
+	/**
+	 * Initialise the m_patterns list
+	 */
 	function __construct() {
 		$this->populate_patterns();
 	}
@@ -128,7 +131,7 @@ class Quote {
 	/**
 	 * Filters and re-indexes indexed arrays
 	 * @param array vals - array to be purged
-	 * @param string $callback - optional callback to pass to array_filter
+	 * @param string callback - optional callback to pass to array_filter
 	 * @return string - the purged and reindexed array
 	 */
 	private static function purge(array $vals, string $callback = null) {
@@ -140,7 +143,7 @@ class Quote {
 
 	/**
 	 * Get the required dictionary chapters for the requested quote pattern
-	 * @param array pattern - an array of required chapters
+	 * @param array pattern - an array of required chapter keys
 	 * @return array - the dictionary chapters in the order specified by the pattern
 	 */
 	private function get_dictionary_by_pattern(array $pattern): array {
