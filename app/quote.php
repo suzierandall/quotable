@@ -26,6 +26,7 @@ class Quote {
 	 * @return string - title for the quote
 	 */
 	public function get_title(): string {
+		$this->prepare_quote();
 		return sprintf('The %s', $this->m_title);
 	}
 
@@ -34,17 +35,34 @@ class Quote {
 	 * @return string - the quote or null on failure
 	 */
 	public function get_quote(): ?string {
-		$rv = null;
+		$this->prepare_quote();
+		$rv = $this->get_formatted_quote();
 		$this->reset_quote();
+		return $rv;
+	}
+
+	/**
+	 * Is there a quote currently saved?
+	 * If not, create one
+	 */
+	private function prepare_quote() {
+		if (empty($this->m_quote)) {
+			$this->set_quote();
+		}
+	}
+
+	/**
+	 * Build and save a quote and title
+	 */
+	private function set_quote() {
 		foreach ($this->get_dictionary() as $options) {
 			$this->append_quote(static::choose($options));
 		}
 		$this->set_quote_title();
-		return $this->get_formatted_quote();
 	}
 
 	/**
-	 * Clear the quote array
+	 * Clear the current quote
 	 * @return none
 	 */
 	private function reset_quote() {
