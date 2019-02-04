@@ -13,8 +13,8 @@ $q->get_quote();
 
 Quotable creates 'useful' quotes using the in-built dictionary, such as:
 
-> The borrowing
+#### The borrowing
 > He appeared frightened as she borrowed your hungry fish
 
-> The releasing
+#### The releasing
 > He felt peaceful but quiet because he released her changeable hat
