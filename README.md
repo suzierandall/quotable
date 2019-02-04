@@ -4,7 +4,7 @@
 
 ```
 include_once('app/quote.php');
-$q = new Quoter;
+$q = new Quote;
 $q->get_title();
 $q->get_quote();
 ```
