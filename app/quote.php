@@ -12,6 +12,7 @@ class Quote {
 	private $m_title = 'fish';
 	private $m_patterns = [];
 	private $m_use_pattern;
+	private $m_quote = [];
 
 	/**
 	 * Initialise the m_patterns list
@@ -34,17 +35,39 @@ class Quote {
 	 */
 	public function get_quote(): ?string {
 		$rv = null;
-		$entries = $this->get_dictionary();
-		if (!empty($entries)) {
-			$story = [];
-			foreach ($entries as $entry) {
-				$option = static::choose($entry);
-				if (!empty($option)) {
-					$story[] = $option;
-				}
-			}
-			$this->set_quote_title($story);
-			$rv = ucfirst(str_replace(' ,', ',', implode(' ', $story)));
+		$this->reset_quote();
+		foreach ($this->get_dictionary() as $options) {
+			$this->append_quote(static::choose($options));
+		}
+		$this->set_quote_title();
+		return $this->get_formatted_quote();
+	}
+
+	/**
+	 * Clear the quote array
+	 * @return none
+	 */
+	private function reset_quote() {
+		$this->m_quote = [];
+	}
+
+	/**
+	 * Push the next entry onto the end of the quote
+	 * @return none
+	 */
+	private function append_quote(string $val) {
+		$this->m_quote[] = $val;
+	}
+
+	/**
+	 * Get a string version of the quote, formatted for output
+	 * @return string - the formatted quote or null on failure
+	 */
+	private function get_formatted_quote(): ?string {
+		$rv = null;
+		$quote = static::purge($this->m_quote);
+		if (!empty($quote)) {
+			$rv = ucfirst(str_replace(' ,', ',', implode(' ', $quote)));
 		}
 		return $rv;
 	}
@@ -114,20 +137,21 @@ class Quote {
 
 	/**
 	 * Set the title for the current quote
-	 * @param array quote - the quote, itemised by chapter
-	 * @return void
+	 * @return bool - true on success, false on failure
 	 */
-	private function set_quote_title(array $quote): void {
+	private function set_quote_title(): bool {
 		$filter_by_key = self::TITLE_KEY;
 		$keys = array_keys($this->m_use_pattern, $filter_by_key);
 		$key = array_pop($keys);
-		$val = $quote[$key] ?? null;
+		$val = $this->m_quote[$key] ?? null;
 		if (!empty($val)) {
 			if ('verb' == self::TITLE_KEY) {
 				$val = static::get_present_from_past($val);
 			}
 			$this->m_title = $val;
+			return true;
 		}
+		return false;
 	}
 
 	/**
