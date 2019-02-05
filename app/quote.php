@@ -205,7 +205,6 @@ class Quote {
 	 */
 	private function get_dictionary_by_pattern(): ?array {
 		$rv = null;
-		// pattern of required chapter keys
 		if (!empty($this->m_use_pattern)) {
 			$vals = [];
 			foreach($this->m_use_pattern as $key) {
